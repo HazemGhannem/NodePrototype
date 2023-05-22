@@ -1,0 +1,27 @@
+<html>
+    <head>
+        <script src="/socket.io/socket.io.js"></script>
+    </head>
+        <body>
+            <input  type="text" id="searchTxt" name="searchTxt" >
+            <input onclick="send()" type="submit">
+
+            <script> 
+            
+            const socket = io.connect();
+            socket.on("msg",(data)=>{
+                p= document.createElement("p")
+                p.innerText = (data)
+                document.body.append(p)
+            })
+           // addEventListener("keyup", (event) => {});
+           // onkeyup = (event) => {socket.emit("msg","user is typing")};
+          
+      
+            function send() {
+             console.log("test")
+                socket.emit("msg",document.getElementById("searchTxt").value)
+            }
+            </script>
+        </body>
+</html>
